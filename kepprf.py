@@ -67,7 +67,7 @@ def kepprf(infile,plotfile,rownum,columns,rows,fluxes,border,background,focus,pr
     if colmap == 'browse':
         status = plt.cmap_plot(cmdLine)
 
-# construct inital guess vector for fit
+# construct initial guess vector for fit
 
     if status == 0:
         guess = []
@@ -75,14 +75,14 @@ def kepprf(infile,plotfile,rownum,columns,rows,fluxes,border,background,focus,pr
             f = fluxes.strip().split(',')
             x = columns.strip().split(',')
             y = rows.strip().split(',')
-            for i in xrange(len(f)):
+            for i in range(len(f)):
                 f[i] = float(f[i])
         except:
             f = fluxes
             x = columns
             y = rows
         nsrc = len(f)
-        for i in xrange(nsrc):
+        for i in range(nsrc):
             try:
                 guess.append(float(f[i]))
             except:
@@ -94,14 +94,14 @@ def kepprf(infile,plotfile,rownum,columns,rows,fluxes,border,background,focus,pr
                 message += 'fluxes must have the same number of sources'
                 status = kepmsg.err(logfile,message,verbose)
         if status == 0:
-            for i in xrange(nsrc):
+            for i in range(nsrc):
                 try:
                     guess.append(float(x[i]))
                 except:
                     message = 'ERROR -- KEPPRF: Columns must be floating point numbers'
                     status = kepmsg.err(logfile,message,verbose)
         if status == 0:
-            for i in xrange(nsrc):
+            for i in range(nsrc):
                 try:
                     guess.append(float(y[i]))
                 except:
@@ -147,7 +147,7 @@ def kepprf(infile,plotfile,rownum,columns,rows,fluxes,border,background,focus,pr
             ra, dec, column, row, kepmag, xdim, ydim, qual, status = \
             kepio.readTPF(infile,'QUALITY',logfile,verbose)
 
-# read mask defintion data from TPF file
+# read mask definition data from TPF file
 
     if status == 0:
         maskimg, pixcoord1, pixcoord2, status = kepio.readMaskDefinition(infile,logfile,verbose)
@@ -156,18 +156,18 @@ def kepprf(infile,plotfile,rownum,columns,rows,fluxes,border,background,focus,pr
 # print target data
 
     if status == 0 and verbose:
-        print ''
-        print '      KepID: %s' % kepid
-        print '        BJD: %.2f' % (barytime[rownum-1] + 2454833.0)
-        print ' RA (J2000): %s' % ra
-        print 'Dec (J2000):  %s' % dec
-        print '     KepMag:  %s' % kepmag
-        print '   SkyGroup:   %2s' % skygroup
-        print '     Season:   %2s' % str(season)
-        print '    Channel:   %2s' % channel
-        print '     Module:   %2s' % module
-        print '     Output:    %1s' % output
-        print ''
+        print('')
+        print('      KepID: %s' % kepid)
+        print('        BJD: %.2f' % (barytime[rownum-1] + 2454833.0))
+        print(' RA (J2000): %s' % ra)
+        print('Dec (J2000):  %s' % dec)
+        print('     KepMag:  %s' % kepmag)
+        print('   SkyGroup:   %2s' % skygroup)
+        print('     Season:   %2s' % str(season))
+        print('    Channel:   %2s' % channel)
+        print('     Module:   %2s' % module)
+        print('     Output:    %1s' % output)
+        print('')
 
 # is this a good row with finite timestamp and pixels?
 
@@ -235,7 +235,7 @@ def kepprf(infile,plotfile,rownum,columns,rows,fluxes,border,background,focus,pr
     if status == 0:
         prf = np.zeros(np.shape(prfn[0]),dtype='float32')
         prfWeight = np.zeros((5),dtype='float32')
-        for i in xrange(5):
+        for i in range(5):
             prfWeight[i] = math.sqrt((column - crval1p[i])**2 + (row - crval2p[i])**2)
             if prfWeight[i] == 0.0:
                 prfWeight[i] = 1.0e-6
@@ -283,7 +283,7 @@ def kepprf(infile,plotfile,rownum,columns,rows,fluxes,border,background,focus,pr
             args = (DATx,DATy,DATimg,ERRimg,nsrc,splineInterpolation,float(x[0]),float(y[0]))
             ans = fmin_powell(kepfunc.PRF,guess,args=args,xtol=xtol,
                               ftol=ftol,disp=False)
-        print 'Convergence time = %.2fs\n' % (time.time() - start)
+        print('Convergence time = %.2fs\n' % (time.time() - start))
 
 # pad the PRF data if the PRF array is smaller than the data array
 
@@ -378,7 +378,7 @@ def kepprf(infile,plotfile,rownum,columns,rows,fluxes,border,background,focus,pr
         kepmsg.log(logfile,'Contamination fraction in aperture = %.2f%%' % (Contamination * 100.0),True)
 
 
-# constuct model PRF in detector coordinates
+# construct model PRF in detector coordinates
 
     if status == 0:
         PRFfit = PRFall + 0.0
@@ -549,7 +549,7 @@ def cmap_plot(cmdLine):
     maps.sort()
     l=len(maps)+1
     for i, m in enumerate(maps):
-        print m
+        print(m)
         subplot(l,1,i+1)
         plt.setp(plt.gca(),xticklabels=[],xticks=[],yticklabels=[],yticks=[])
         plt.imshow(a,aspect='auto',cmap=get_cmap(m),origin="lower")

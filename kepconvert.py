@@ -117,8 +117,8 @@ def kepconvert(infile,outfile,conversion,columns,baddata,clobber,verbose,logfile
         nline = 0
         for line in table:
             line = line.strip()
-            line = re.sub('\s+',',',line)
-            line = re.sub('\|',',',line)
+            line = re.sub(r'\s+',',',line)
+            line = re.sub(r'\|',',',line)
             line = re.sub(';',',',line)
             if '#' not in line:
                 nline + 1

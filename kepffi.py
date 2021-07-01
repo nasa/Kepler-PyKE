@@ -130,26 +130,26 @@ def kepffi(ffifile,kepid,ra,dec,aperfile,imin,imax,iscale,cmap,npix,
                 = MASTRADec(mra,mdec,8.0,season)
             ra,dec = dec2sex(ra,dec)
         pra = ra; pdec = dec
-        print kepid,ra,dec,kepmag,skygroup,channel,module,output,row,column
+        print(kepid,ra,dec,kepmag,skygroup,channel,module,output,row,column)
 # read and close FFI FITS file
 
         img, status = readimage(ffi,int(channel))
         status = closefits(ffi)
 
 # print target data
-        print ''
-        print '      KepID:  %s' % kepid
-        print ' RA (J2000):  %s' % ra
-        print 'Dec (J2000): %s' % dec
-        print '     KepMag:  %s' % kepmag
-        print '   SkyGroup:    %2s' % skygroup
-        print '     Season:    %2s' % str(season)
-        print '    Channel:    %2s' % channel
-        print '     Module:    %2s' % module
-        print '     Output:     %1s' % output
-        print '     Column:  %4s' % column
-        print '        Row:  %4s' % row
-        print ''
+        print('')
+        print('      KepID:  %s' % kepid)
+        print(' RA (J2000):  %s' % ra)
+        print('Dec (J2000): %s' % dec)
+        print('     KepMag:  %s' % kepmag)
+        print('   SkyGroup:    %2s' % skygroup)
+        print('     Season:    %2s' % str(season))
+        print('    Channel:    %2s' % channel)
+        print('     Module:    %2s' % module)
+        print('     Output:     %1s' % output)
+        print('     Column:  %4s' % column)
+        print('        Row:  %4s' % row)
+        print('')
 
 # subimage of channel for plot
         ymin = int(max([int(row)-npix/2,0]))
@@ -423,7 +423,7 @@ def MASTRADec(ra,dec,darcsec,season):
 # -----------------------------------
 # convert sexadecimal hours to decimal degrees
 def sex2dec(ra,dec):
-    ra = re.sub('\s+','|',ra.strip())
+    ra = re.sub(r'\s+','|',ra.strip())
     ra = re.sub(':','|',ra.strip())
     ra = re.sub(';','|',ra.strip())
     ra = re.sub(',','|',ra.strip())
@@ -431,7 +431,7 @@ def sex2dec(ra,dec):
     ra = ra.split('|')
     outra = (float(ra[0]) + float(ra[1]) / 60 + float(ra[2]) / 3600) * 15.0
 
-    dec = re.sub('\s+','|',dec.strip())
+    dec = re.sub(r'\s+','|',dec.strip())
     dec = re.sub(':','|',dec.strip())
     dec = re.sub(';','|',dec.strip())
     dec = re.sub(',','|',dec.strip())
@@ -456,7 +456,7 @@ def dec2sex(ra,dec):
     tmp = (tmp - float(ra_h)) * 60.0
     ra_m = str(int(tmp))
     tmp = (tmp - float(ra_m)) * 6000.0
-    print tmp, float(int(tmp + 0.5))
+    print(tmp, float(int(tmp + 0.5)))
     ra_s = '%.2f' % (float(int(tmp + 0.5)) / 100)
 
     if dec < 0.0:
@@ -547,8 +547,8 @@ def clicker3(event):
                 event.y > 432 and event.y < 480):
                 masktxt  = 'NEW|'
                 masktxt += skygroup + '|'
-                masktxt += '{' + re.sub('\s+',':',str(ra))
-                masktxt += ',' + re.sub('\s+',':',str(dec))
+                masktxt += '{' + re.sub(r'\s+',':',str(ra))
+                masktxt += ',' + re.sub(r'\s+',':',str(dec))
                 masktxt += '},TAD_NO_HALO,TAD_NO_UNDERSHOOT_COLUMN|'
                 masktxt += row + '|'
                 masktxt += column + '|'
@@ -560,7 +560,7 @@ def clicker3(event):
                 out = open(maskfile,'a')
                 out.write(masktxt[:-1]+'\n')
                 out.close()
-                print 'Wrote custom aperture definition file ' + maskfile
+                print('Wrote custom aperture definition file ' + maskfile)
     return
 
 # -----------------------------------------------------------
@@ -573,7 +573,7 @@ def clicker4(event):
             if (event.x > 585 and event.x < 783 and
                 event.y > 377 and event.y < 425):
                 plt.savefig(plotfile)
-                print 'Wrote plot hardcopy file ' + plotfile
+                print('Wrote plot hardcopy file ' + plotfile)
     return
 
 # -----------------------------------------------------------

@@ -323,9 +323,9 @@ def clicker2(event):
                         txt += str(t1) + ',' + str(t2) + '\n'
                         nt += 2
                     txt = txt.strip()
-                    print txt
+                    print(txt)
                     kepmsg.file(outf,txt,True)
-                    print '\nWrote ASCII file ' + outf
+                    print('\nWrote ASCII file ' + outf)
                     plotlc(cmdLine)
     return
 

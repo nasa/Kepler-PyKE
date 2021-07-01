@@ -97,7 +97,7 @@ def kepstddev(infile,outfile,datacol,timescale,clobber,verbose,logfile,status,cm
         stddev = running_frac_std(intime,indata,timescale/24) * 1.0e6
         astddev = np.std(indata) * 1.0e6
         cdpp = stddev / math.sqrt(timescale * 3600.0 / cadence)
-        print '\nStandard deviation = %d ppm' % astddev
+        print('\nStandard deviation = %d ppm' % astddev)
 
 # filter cdpp
 
@@ -110,14 +110,14 @@ def kepstddev(infile,outfile,datacol,timescale,clobber,verbose,logfile,status,cm
     if status == 0:
         med = np.median(cdpp[:])
         medcdpp = np.ones((len(cdpp)),dtype='float32') * med
-        print 'Median %.1fhr CDPP = %d ppm' % (timescale, med)
+        print('Median %.1fhr CDPP = %d ppm' % (timescale, med))
 
 # calculate RMS STDDEV
 
     if status == 0:
         rms, status = kepstat.rms(cdpp,np.zeros(len(stddev)),logfile,verbose)
         rmscdpp = np.ones((len(cdpp)),dtype='float32') * rms
-        print '   RMS %.1fhr CDPP = %d ppm\n' % (timescale, rms)
+        print('   RMS %.1fhr CDPP = %d ppm\n' % (timescale, rms))
 
 # clean up x-axis unit
 
@@ -131,7 +131,7 @@ def kepstddev(infile,outfile,datacol,timescale,clobber,verbose,logfile,status,cm
     if status == 0:
         pout = copy(cdpp)
         nrm = math.ceil(math.log10(np.median(cdpp))) - 1.0
-        ylab = '%.1fhr $\sigma$ (ppm)' % timescale
+        ylab = r'%.1fhr $\sigma$ (ppm)' % timescale
 
 # data limits
 

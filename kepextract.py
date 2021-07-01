@@ -492,7 +492,7 @@ if '--shell' in sys.argv:
         'Derive a light curve from a target pixel file, with user-defined apertures')
     parser.add_argument('--shell', action='store_true', help='Are we running from the shell?')
     parser.add_argument('infile', help='Name of input target pixel file', type=str)
-    parser.add_argument('maskfile', help='Name of mask defintion ASCII file', type=str)
+    parser.add_argument('maskfile', help='Name of mask definition ASCII file', type=str)
     parser.add_argument('outfile', help='Name of output light curve FITS file', type=str)
     parser.add_argument('--background', action='store_true', help='Subtract background from data?')
     parser.add_argument('--clobber', action='store_true', help='Overwrite output file?')

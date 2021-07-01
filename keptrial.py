@@ -170,16 +170,16 @@ def keptrial(infile,outfile,datacol,errcol,fmin,fmax,nfreq,method,
                 gotbin = True
         powave, powstdev = kepstat.stdev(pmax)
 
-# print result
+# print(result)
 
     if status == 0:
-        print '              best period: %.10f days (%.7f min)' % (p, p * 1440.0)
-        print '     1-sigma period error: %.10f days (%.7f min)' % (perr, perr * 1440.0)
-        print '             search range: %.10f - %.10f days  ' % (1.0 / fmax, 1.0 / fmin)
-        print '    100%% confidence range: %.10f - %.10f days  ' % (1.0 / f2, 1.0 / f1)
-#        print '     detection confidence: %.2f sigma' % (powave / powstdev)
-        print '         number of trials: %d' % ntrials
-        print ' number of frequency bins: %d' % nfreq
+        print('              best period: %.10f days (%.7f min)' % (p, p * 1440.0))
+        print('     1-sigma period error: %.10f days (%.7f min)' % (perr, perr * 1440.0))
+        print('             search range: %.10f - %.10f days  ' % (1.0 / fmax, 1.0 / fmin))
+        print('    100%% confidence range: %.10f - %.10f days  ' % (1.0 / f2, 1.0 / f1))
+#        print('     detection confidence: %.2f sigma' % (powave / powstdev))
+        print('         number of trials: %d' % ntrials)
+        print(' number of frequency bins: %d' % nfreq)
 
 # history keyword in output file
 

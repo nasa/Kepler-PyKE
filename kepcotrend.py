@@ -8,7 +8,7 @@ Changelog:
 1.0.1 caught not having a new version of numpy with the in1d function and changed the simplex algorithm so that it fits the first two BV then fits
                 the rest of them, now much more stable (Sep 5 2011)
 2.0 code will now work on short cadence data by interpolating the basis vectors down to short cadence, several interpolation methods are available
-3.0 made it possible to run from the command line if there are arguements given to the call to kepcotrend
+3.0 made it possible to run from the command line if there are arguments given to the call to kepcotrend
 """
 
 __svnid__ = "$Id: kepcotrend.py 6165 2014-03-26 21:16:27Z mstill $"
@@ -143,7 +143,8 @@ def do_lsq_uhat(pcomps,cad,flux,orthog=True):
     """
     does a linear least squares fit of the basis vectors to the light curve
     using the 'matrix' method - U(transpose) * y = coeffs
-    In my implimentation y is a horizontal 1D array and U is also a long thin
+
+    In my implementation y is a horizontal 1D array and U is also a long thin
     array of length correpsonding to the number of basis vectors use. In
     effect what I have is my U is already transposed and y need to be
     transposed to used. First I convert to what is expected in leasts
@@ -208,19 +209,19 @@ def do_lsq_fmin_pow(pcomps,cad,flux,order):
 
 def fitfunct_fmin(scale,pcomp,date,zeroflux):
     """
-    the function called by the simplex fitting alogirthm
+    the function called by the simplex fitting algorithm
     """
 
     outflux = np.copy(zeroflux)
     for i in range(np.shape(pcomp)[0]):
         outflux -= scale[i]*pcomp[i]
-    sumsq = sum(abs(np.array(outflux)))
+    return sum(abs(np.array(outflux)))
     #sumsq = sum(array(outflux)**2)
-    return sumsq
+
 
 def fitfunct_fmin_pow(scale,pcomp,date,zeroflux,order):
     """
-    the function called by the simplex fitting alogirthm
+    the function called by the simplex fitting algorithm
     """
 
     outflux = np.copy(zeroflux)
@@ -510,7 +511,7 @@ def kepcotrendsc(infile,outfile,bvfile,listbv,fitmethod,fitpower,iterate,
     either True or False if you want to see a plot of the light curve
     The top plot shows the original light curve in blue and the sum of basis
     vectors in red
-    The bottom plot has had the basis vector sum subracted
+    The bottom plot has had the basis vector sum subtracted
 
     bvfile:
     the name of the FITS file containing the basis vectors
@@ -637,7 +638,7 @@ def kepcotrendsc(infile,outfile,bvfile,listbv,fitmethod,fitpower,iterate,
         table = instr[1].data
         if version == 1:
             if str(instr[1].header['DATATYPE']) == 'long cadence':
-                #print 'Light curve was taken in Lond Cadence mode!'
+                #print 'Light curve was taken in Long Cadence mode!'
                 quarter = str(instr[1].header['QUARTER'])
                 module = str(instr[1].header['MODULE'])
                 output = str(instr[1].header['OUTPUT'])
@@ -723,7 +724,7 @@ def kepcotrendsc(infile,outfile,bvfile,listbv,fitmethod,fitpower,iterate,
         lc_cad,lc_date,lc_flux,lc_err,bad_data = cutBadData(lc_cad_o,
                 lc_date_o,lc_flux_o,lc_err_o)
         #get a list of basis vectors to use from the list given
-        #accept different seperators
+        #accept different separators
         listbv = listbv.strip()
         if listbv[1] in [' ',',',':',';','|',', ']:
             separator = str(listbv)[1]
@@ -772,7 +773,7 @@ def kepcotrendsc(infile,outfile,bvfile,listbv,fitmethod,fitpower,iterate,
             lc_cad_masked = np.copy(lc_cad)
             n_err_masked = np.copy(n_err)
             maskdata = atleast_2d(genfromtxt(maskfile,delimiter=','))
-            #make a mask of True values incase there are not regions in maskfile to exclude.
+            #make a mask of True values in case there are not regions in maskfile to exclude.
             mask = np.zeros(len(lc_date_masked)) == 0.
             for maskrange in maskdata:
                 if version == 1:
@@ -848,7 +849,7 @@ def kepcotrendsc(infile,outfile,bvfile,listbv,fitmethod,fitpower,iterate,
         status = kepio.closefits(instr,logfile,verbose)
 
         #print some results to screen:
-        print '      -----      '
+        print('      -----      ')
         if iterate:
             flux_fit = n_flux_masked[fittedmask]
             sum_fit = bvsum_masked[fittedmask]
@@ -858,12 +859,12 @@ def kepcotrendsc(infile,outfile,bvfile,listbv,fitmethod,fitpower,iterate,
             sum_fit = bvsum_masked
             err_fit = n_err_masked
 
-        print 'reduced chi2: ' + str(chi2_gtf(flux_fit,sum_fit,err_fit,len(flux_fit)-len(coeffs)))
-        print 'rms: ' + str(medflux*rms(flux_fit,sum_fit))
+        print('reduced chi2: ' + str(chi2_gtf(flux_fit,sum_fit,err_fit,len(flux_fit)-len(coeffs))))
+        print('rms: ' + str(medflux*rms(flux_fit,sum_fit)))
 
         for i in range(len(coeffs)):
-            print 'Coefficient of CBV #%s: %s' %(i+1,coeffs[i])
-        print '      -----      '
+            print('Coefficient of CBV #%s: %s' %(i+1,coeffs[i]))
+        print('      -----      ')
 
     # end time
     if status == 0:

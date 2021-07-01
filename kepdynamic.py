@@ -151,7 +151,7 @@ def kepdynamic(infile, outfile, fcol, pmin, pmax, nfreq, deltat, nslice,
             fr, power = kepfourier.ft(x,y,fmin,fmax,deltaf,False)
             for j in range(len(power)):
                 dynam.append(power[j])
-            print 'Timeslice: %.4f  Pmax: %.2E' % ((t2[i] + t1[i]) / 2, power.max())
+            print('Timeslice: %.4f  Pmax: %.2E' % ((t2[i] + t1[i]) / 2, power.max()))
 
 # define shape of results array
 
@@ -229,7 +229,7 @@ def kepdynamic(infile, outfile, fcol, pmin, pmax, nfreq, deltat, nslice,
         plt.xlabel(xlab, {'color' : 'k'})
         plt.ylabel(r'Frequency (d$^{-1}$)', {'color' : 'k'})
         plt.grid()
-        plt.savefig(re.sub('\.\S+','.png',outfile),dpi=100)
+        plt.savefig(re.sub(r'\.\S+','.png',outfile),dpi=100)
 
 # render plot
         plt.ion()

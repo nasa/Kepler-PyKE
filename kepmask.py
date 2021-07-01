@@ -95,17 +95,17 @@ def kepmask(infile,mfile,pfile,tabrow,imin,imax,iscale,cmap,verbose,logfile,stat
 # print target data
 
     if status == 0:
-        print ''
-        print '      KepID:  %s' % kepid
-        print ' RA (J2000):  %s' % ra
-        print 'Dec (J2000):   %s' % dec
-        print '     KepMag:   %s' % kepmag
-        print '   SkyGroup:   %2s' % skygroup
-        print '     Season:   %2s' % str(season)
-        print '    Channel:   %2s' % channel
-        print '     Module:   %2s' % module
-        print '     Output:    %1s' % output
-        print ''
+        print('')
+        print('      KepID:  %s' % kepid)
+        print(' RA (J2000):  %s' % ra)
+        print('Dec (J2000):   %s' % dec)
+        print('     KepMag:   %s' % kepmag)
+        print('   SkyGroup:   %2s' % skygroup)
+        print('     Season:   %2s' % str(season))
+        print('    Channel:   %2s' % channel)
+        print('     Module:   %2s' % module)
+        print('     Output:    %1s' % output)
+        print('')
 
 # subimage of channel for plot
 
@@ -347,7 +347,7 @@ def clicker3(event):
                 out = open(maskfile,'a')
                 out.write(masktxt[:-1]+'\n')
                 out.close()
-                print 'Wrote custom aperture definition file ' + maskfile
+                print('Wrote custom aperture definition file ' + maskfile)
     return
 
 # -----------------------------------------------------------
@@ -360,7 +360,7 @@ def clicker4(event):
             if (event.x > 601 and event.x < 801 and
                 event.y > 285 and event.y < 347):
                 plt.savefig(plotfile)
-                print 'Wrote plot hardcopy file ' + plotfile
+                print('Wrote plot hardcopy file ' + plotfile)
     return
 
 # -----------------------------------------------------------

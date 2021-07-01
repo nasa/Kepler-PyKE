@@ -401,7 +401,7 @@ def keptransit(inputfile, outputfile, datacol, errorcol, periodini_d,
         guess_params = [periodini_d, rprsini, T0ini, Eccini, arsini, incini,
                         omegaini, secini, fluxoffsetini]
 
-        print 'cleaning done: about to fit transit'
+        print('cleaning done: about to fit transit')
 
         if fitter == 'leastsq':
             fit_output = leastsq(fit_tmod, guess_params,
@@ -416,55 +416,55 @@ def keptransit(inputfile, outputfile, datacol, errorcol, periodini_d,
     if status == 0:
         if fixed_dict['period'] == True:
             newperiod = guess_params[0]
-            print 'Fixed period (days) = ' + str(newperiod)
+            print('Fixed period (days) = ' + str(newperiod))
         else:
             newperiod = fit_output[0][0]
-            print 'Fit period (days) = ' + str(newperiod)
+            print('Fit period (days) = ' + str(newperiod))
         if fixed_dict['rprs'] == True:
             newrprs = guess_params[1]
-            print 'Fixed R_planet / R_star = ' + str(newrprs)
+            print('Fixed R_planet / R_star = ' + str(newrprs))
         else:
             newrprs = fit_output[0][1]
-            print 'Fit R_planet / R_star = ' + str(newrprs)
+            print('Fit R_planet / R_star = ' + str(newrprs))
         if fixed_dict['T0'] == True:
             newT0 = guess_params[2]
-            print 'Fixed T0 (BJD) = ' + str(newT0)
+            print('Fixed T0 (BJD) = ' + str(newT0))
         else:
             newT0 = fit_output[0][2]
-            print 'Fit T0 (BJD) = ' + str(newT0)
+            print('Fit T0 (BJD) = ' + str(newT0))
         if fixed_dict['Ecc'] == True:
             newEcc = guess_params[3]
-            print 'Fixed eccentricity = ' + str(newEcc)
+            print('Fixed eccentricity = ' + str(newEcc))
         else:
             newEcc = fit_output[0][3]
-            print 'Fit eccentricity = ' + str(newEcc)
+            print('Fit eccentricity = ' + str(newEcc))
         if fixed_dict['ars'] == True:
             newars = guess_params[4]
-            print 'Fixed a / R_star = ' + str(newars)
+            print('Fixed a / R_star = ' + str(newars))
         else:
             newars = fit_output[0][4]
-            print 'Fit a / R_star = ' + str(newars)
+            print('Fit a / R_star = ' + str(newars))
         if fixed_dict['inc'] == True:
             newinc = guess_params[5]
-            print 'Fixed inclination (deg) = ' + str(newinc* 180. / np.pi)
+            print('Fixed inclination (deg) = ' + str(newinc* 180. / np.pi))
         else:
             newinc = fit_output[0][5]
-            print 'Fit inclination (deg) = ' + str(newinc* 180. / np.pi)
+            print('Fit inclination (deg) = ' + str(newinc* 180. / np.pi))
         if fixed_dict['omega'] == True:
             newomega = guess_params[6]
-            print 'Fixed omega = ' + str(newomega)
+            print('Fixed omega = ' + str(newomega))
         else:
             newomega = fit_output[0][6]
-            print 'Fit omega = ' + str(newomega)
+            print('Fit omega = ' + str(newomega))
         if fixed_dict['sec'] == True:
             newsec = guess_params[7]
-            print 'Fixed seconary eclipse depth = ' + str(newsec)
+            print('Fixed seconary eclipse depth = ' + str(newsec))
         else:
             newsec = fit_output[0][7]
-            print 'Fit seconary eclipse depth = ' + str(newsec)
+            print('Fit seconary eclipse depth = ' + str(newsec))
         if fixfluxoffset == False:
             newfluxoffset = fit_output[0][8]
-            print 'Fit flux offset = ' + str(newfluxoffset)
+            print('Fit flux offset = ' + str(newfluxoffset))
 
         modelfit = tmod.lightcurve(intime,newperiod,newrprs,newT0,newEcc,
             newars,newinc,newomega,LDparams,newsec)
@@ -513,7 +513,7 @@ if '--shell' in sys.argv:
         type=float, dest=incini, default=90.)
     parser.add_argument('--omega', help='Guess periastron angle',
         type=float, dest=omegaini, default=0.)
-    parser.add_argument('--LDparams', help='Limb darkening parameters, seperate by a space',
+    parser.add_argument('--LDparams', help='Limb darkening parameters, separate by a space',
         type=str, default='')
     parser.add_argument('--sec', help='Guess secondary eclipse depth',
         type=float, dest=secini, default=0.)

@@ -71,7 +71,7 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
         work = re.sub(';',',',work)
         nsrc = len(work.split(','))
 
-# construct inital guess vector for fit
+# construct initial guess vector for fit
 
     if status == 0:
         guess = []
@@ -79,14 +79,14 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
             f = fluxes.strip().split(',')
             x = columns.strip().split(',')
             y = rows.strip().split(',')
-            for i in xrange(len(f)):
+            for i in range(len(f)):
                 f[i] = float(f[i])
         except:
             f = fluxes
             x = columns
             y = rows
         nsrc = len(f)
-        for i in xrange(nsrc):
+        for i in range(nsrc):
             try:
                 guess.append(float(f[i]))
             except:
@@ -98,14 +98,14 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
                 message += 'fluxes must have the same number of sources'
                 status = kepmsg.err(logfile,message,verbose)
         if status == 0:
-            for i in xrange(nsrc):
+            for i in range(nsrc):
                 try:
                     guess.append(float(x[i]))
                 except:
                     message = 'ERROR -- KEPPRF: Columns must be floating point numbers'
                     status = kepmsg.err(logfile,message,verbose)
         if status == 0:
-            for i in xrange(nsrc):
+            for i in range(nsrc):
                 try:
                     guess.append(float(y[i]))
                 except:
@@ -192,17 +192,17 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
 # print target data
 
     if status == 0 and verbose:
-        print ''
-        print '      KepID:  %s' % kepid
-        print ' RA (J2000):  %s' % ra
-        print 'Dec (J2000): %s' % dec
-        print '     KepMag:  %s' % kepmag
-        print '   SkyGroup:    %2s' % skygroup
-        print '     Season:    %2s' % str(season)
-        print '    Channel:    %2s' % channel
-        print '     Module:    %2s' % module
-        print '     Output:     %1s' % output
-        print ''
+        print('')
+        print('      KepID:  %s' % kepid)
+        print(' RA (J2000):  %s' % ra)
+        print('Dec (J2000): %s' % dec)
+        print('     KepMag:  %s' % kepmag)
+        print('   SkyGroup:    %2s' % skygroup)
+        print('     Season:    %2s' % str(season))
+        print('    Channel:    %2s' % channel)
+        print('     Module:    %2s' % module)
+        print('     Output:     %1s' % output)
+        print('')
 
 # determine suitable PRF calibration file
 
@@ -241,7 +241,7 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
     if status == 0:
         prf = np.zeros(np.shape(prfn[0]),dtype='float32')
         prfWeight = np.zeros((5),dtype='float32')
-        for i in xrange(5):
+        for i in range(5):
             prfWeight[i] = math.sqrt((column - crval1p[i])**2 + (row - crval2p[i])**2)
             if prfWeight[i] == 0.0:
                 prfWeight[i] = 1.0e6
@@ -282,8 +282,8 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
         barytime += bjdref
         tstart,tstop,status = kepio.timeranges(ranges,logfile,verbose)
         incl = np.zeros((len(barytime)),dtype='int')
-        for rownum in xrange(len(barytime)):
-            for winnum in xrange(len(tstart)):
+        for rownum in range(len(barytime)):
+            for winnum in range(len(tstart)):
                 if barytime[rownum] >= tstart[winnum] and \
                         barytime[rownum] <= tstop[winnum] and \
                         (qual[rownum] == 0 or qualflags) and \
@@ -307,7 +307,7 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
         pc1 = np.zeros((nincl),'float32')
         pc2 = np.zeros((nincl),'float32')
         qua = np.zeros((nincl),'float32')
-        for rownum in xrange(len(barytime)):
+        for rownum in range(len(barytime)):
             if incl[rownum] == 1:
                 tim[n] = barytime[rownum]
                 tco[n] = tcorr[rownum]
@@ -350,7 +350,7 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
 
     if status == 0:# and not cmdLine:
         oldtime = 0.0
-        for rownum in xrange(np.min([80,len(barytime)])):
+        for rownum in range(np.min([80,len(barytime)])):
             try:
                 if barytime[rownum] - oldtime > 0.5:
                     ftol = 1.0e-10; xtol = 1.0e-10
@@ -405,8 +405,8 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
 
     if status == 0 and not cmdLine:
         oldtime = 0.0; ans = []
-#        for rownum in xrange(1,10):
-        for rownum in xrange(nincl):
+#        for rownum in range(1,10):
+        for rownum in range(nincl):
             proctime = time.time()
             try:
                 if barytime[rownum] - oldtime > 0.5:
@@ -447,7 +447,7 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
         else:
             wx = np.ones((na)); wy = np.ones((na)); angle = np.zeros((na))
 
-# constuct model PRF in detector coordinates
+# construct model PRF in detector coordinates
 
     if status == 0:
         residual = []; chi2 = []
@@ -1028,7 +1028,7 @@ def kepprfphot(infile,outroot,columns,rows,fluxes,border,background,focus,prfdir
 
 # plot labels
 
-            ax1.set_ylabel('$\chi^2$ (%d dof)' % (npix-len(guess)-1),color='k',fontsize=11)
+            ax1.set_ylabel(r'$\chi^2$ (%d dof)' % (npix-len(guess)-1),color='k',fontsize=11)
             plt.xlabel(xlab, {'color' : 'k'})
 
 # make grid on plot

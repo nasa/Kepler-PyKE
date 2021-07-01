@@ -190,7 +190,7 @@ def filterOnRange(intime,tstart,tstop):
     return outlist, status
 
 #------------------------------------------------------------------
-# inverse normal cummulative function
+# inverse normal cumulative function
 
 def inv_normal_cummulative_function(p):
 

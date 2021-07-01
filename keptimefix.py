@@ -126,7 +126,7 @@ def keptimefix(infile,outfile,clobber,verbose,logfile,status,cmdLine=False):
         dstart = instr[1].header['DATE-OBS']
         dend = instr[1].header['DATE-END']
 
-        ## This datetime stuff is not nessessary!!!!
+        ## This datetime stuff is not necessary!!!!
 
         #dts = datetime.datetime.strptime(dstart, "%Y-%m-%dT%H:%M:%S.%fZ")
         #dte = datetime.datetime.strptime(dend, "%Y-%m-%dT%H:%M:%S.%fZ")

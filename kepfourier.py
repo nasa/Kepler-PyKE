@@ -26,8 +26,8 @@ def ft(x,y,f1,f2,df,verbose):
             power.append(np.nan)
         nstep += 1
         if verbose:
-            print 'Step: %5d  Period: %10.6f (d)  Power: %e' % \
-                (nstep, 1.0 / fr[-1], power[-1])
+            print('Step: %5d  Period: %10.6f (d)  Power: %e' %
+                  (nstep, 1.0 / fr[-1], power[-1]))
     fr = np.array(fr,dtype='float32')
     power = np.array(power,dtype='float32')
 

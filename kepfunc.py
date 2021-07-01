@@ -79,7 +79,7 @@ def smooth(x,window_len=10,window='hanning'):
     This method is based on the convolution of a scaled window with the signal.
     The signal is prepared by introducing reflected copies of the signal
     (with the window size) in both ends so that transient parts are minimized
-    in the begining and end part of the output signal.
+    in the beginning and end part of the output signal.
 
     input:
      x: the input signal
@@ -106,16 +106,16 @@ def smooth(x,window_len=10,window='hanning'):
     window_len = int(window_len)
 
     if x.ndim != 1:
-        raise ValueError, "smooth only accepts 1 dimension arrays."
+        raise ValueError("smooth only accepts 1 dimension arrays.")
 
     if x.size < window_len:
-        raise ValueError, "Input vector needs to be bigger than window size."
+        raise ValueError("Input vector needs to be bigger than window size.")
 
-    if window_len<3:
+    if window_len < 3:
         return x
 
-    if not window in ['flat', 'hanning', 'hamming', 'bartlett', 'blackman']:
-        raise ValueError, "Window is one of 'flat', 'hanning', 'hamming', 'bartlett', 'blackman'"
+    if window not in ['flat', 'hanning', 'hamming', 'bartlett', 'blackman']:
+        raise ValueError("Window is one of 'flat', 'hanning', 'hamming', 'bartlett', 'blackman'")
 
     s=numpy.r_[2*x[0]-x[window_len:1:-1],x,2*x[-1]-x[-1:-window_len:-1]]
     if window == 'flat': #moving average
@@ -299,7 +299,7 @@ def PRF2DET2(flux,OBJx,OBJy,DATx,DATy,splineInterpolation):
         FRCx = -FRCx
         FRCy = -FRCy
 
-# constuct model PRF in detector coordinates
+# construct model PRF in detector coordinates
 
         for (j,y) in enumerate(DATy):
             for (k,x) in enumerate(DATx):
@@ -335,7 +335,7 @@ def PRF2DET(flux,OBJx,OBJy,DATx,DATy,wx,wy,a,splineInterpolation):
         FRCx = -FRCx
         FRCy = -FRCy
 
-# constuct model PRF in detector coordinates
+# construct model PRF in detector coordinates
 
         for (j,y) in enumerate(DATy):
             for (k,x) in enumerate(DATx):
@@ -755,7 +755,7 @@ def kepler_focus_multi_prf_2d(params,*args):
 
     prfDimY = datDimY / prfDelY / w
     prfDimX = datDimX / prfDelX / w
-    print w, prfDimY, prfDimX
+    print(w, prfDimY, prfDimX)
 
 # location of the data image centered on the PRF image (in PRF pixel units)
 
@@ -865,7 +865,7 @@ def BJD2BKJD(bjd):
     return bjd - 2454833.0
 
 #------------------------------------------------------------------
-# inverse normal cummulative function
+# inverse normal cumulative function
 
 def inv_normal_cummulative_function(p):
 

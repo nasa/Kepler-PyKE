@@ -85,7 +85,7 @@ def kepdiffim(infile,outfile,plotfile,imscale,colmap,filter,function,cutoff,
             ra, dec, column, row, kepmag, xdim, ydim, qual, status = \
             kepio.readTPF(infile,'QUALITY',logfile,verbose)
 
-# read mask defintion data from TPF file
+# read mask definition data from TPF file
 
     if status == 0:
         maskimg, pixcoord1, pixcoord2, status = kepio.readMaskDefinition(infile,logfile,verbose)
@@ -93,17 +93,17 @@ def kepdiffim(infile,outfile,plotfile,imscale,colmap,filter,function,cutoff,
 # print target data
 
     if status == 0:
-        print ''
-        print '      KepID:  %s' % kepid
-        print ' RA (J2000):  %s' % ra
-        print 'Dec (J2000): %s' % dec
-        print '     KepMag:  %s' % kepmag
-        print '   SkyGroup:    %2s' % skygroup
-        print '     Season:    %2s' % str(season)
-        print '    Channel:    %2s' % channel
-        print '     Module:    %2s' % module
-        print '     Output:     %1s' % output
-        print ''
+        print('')
+        print('      KepID:  %s' % kepid)
+        print(' RA (J2000):  %s' % ra)
+        print('Dec (J2000): %s' % dec)
+        print('     KepMag:  %s' % kepmag)
+        print('   SkyGroup:    %2s' % skygroup)
+        print('     Season:    %2s' % str(season))
+        print('    Channel:    %2s' % channel)
+        print('     Module:    %2s' % module)
+        print('     Output:     %1s' % output)
+        print('')
 
 # how many quality = 0 rows?
 
@@ -378,7 +378,7 @@ def cmap_plot():
     maps.sort()
     l=len(maps)+1
     for i, m in enumerate(maps):
-        print m
+        print(m)
         plt.subplot(l,1,i+1)
         plt.setp(plt.gca(),xticklabels=[],xticks=[],yticklabels=[],yticks=[])
         plt.imshow(a,aspect='auto',cmap=get_cmap(m),origin="lower")

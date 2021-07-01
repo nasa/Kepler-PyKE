@@ -873,7 +873,7 @@ def readMaskDefinition(infile,logfile,verbose):
         try:
             img = inf['APERTURE'].data
         except:
-            txt = 'WARNING -- KEPIO.READMASKDEFINITION: Cannot read mask defintion in ' + infile + '[APERTURE]'
+            txt = 'WARNING -- KEPIO.READMASKDEFINITION: Cannot read mask definition in ' + infile + '[APERTURE]'
             kepwarn.err(txt,logfile)
             status = 1
     if status == 0:

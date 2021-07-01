@@ -98,7 +98,7 @@ def kepdetrend(infile,outfile,datacol,errcol,ranges1,npoly1,nsig1,niter1,
         intime = work1[:,2] + bjdref
         indata = work1[:,1]
         inerr = work1[:,0]
-        print intime
+        print(intime)
 
 # time ranges for region 1 (region to be corrected)
 
@@ -140,7 +140,7 @@ def kepdetrend(infile,outfile,datacol,errcol,ranges1,npoly1,nsig1,niter1,
             if i not in cadencelis1:
                 fit1[i] = 0.0
         plotx1 += t0
-        print coeffs
+        print(coeffs)
 
 # time ranges for region 2 (region that is correct)
 

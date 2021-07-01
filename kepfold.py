@@ -206,7 +206,7 @@ def kepfold(infile,outfile,period,phasezero,bindata,binmethod,threshold,niter,nb
 
     if status == 0:
         ptuple = []
-        phase3 = [];
+        phase3 = []
         sap3 = []; saperr3 = []
         pdc3 = []; pdcerr3 = []
         cbv3 = []; cbverr3 = []
@@ -425,7 +425,7 @@ def kepfold(infile,outfile,period,phasezero,bindata,binmethod,threshold,niter,nb
             if (phase3[i] <= 0.5):
                 ptime1 = np.append(ptime1,phase3[i] + 1.0)
                 pout1 = np.append(pout1,work[i])
-    xlab = 'Orbital Phase ($\phi$)'
+    xlab = r'Orbital Phase ($\phi$)'
 
 # clean up y-axis units
 

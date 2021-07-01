@@ -36,9 +36,9 @@ def rebin2D(a, newdims, method='linear', centre=False, minusone=False):
     old = np.array(a.shape)
     ndims = len(a.shape)
     if len(newdims) != ndims:
-        print "[congrid] dimensions error. " \
-              "This routine currently only support " \
-              "rebinning to the same number of dimensions."
+        print("[congrid] dimensions error. "
+              "This routine currently only support "
+              "rebinning to the same number of dimensions.")
         return None
     newdims = np.asarray(newdims, dtype=float)
     dimlist = []

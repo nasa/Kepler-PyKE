@@ -5,7 +5,7 @@ Date released: Nov 10 2011
 
 Changelog:
 1.0 released
-2.0 made it possible to run from the command line if there are arguements given to the call to keparith
+2.0 made it possible to run from the command line if there are arguments given to the call to keparith
 2.1 fixed a bug when dividing a number and using PDCSAP_DATA - thanks to Joseph Long for spotting this
 """
 

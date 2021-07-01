@@ -594,7 +594,7 @@ def keppca(infile, maskfile, outfile, components, plotpca, nreps, clobber,
                 py = np.copy(fluxcor)
                 py, ylab, status = kepplot.cleany(py,1.0,logfile,verbose)
                 plt.plot(px,py,marker='.',color='r',linestyle='',markersize=1.0)
-                kepplot.labels('',re.sub('\)','',re.sub('Flux \(','',ylab)),'k',18)
+                kepplot.labels('',re.sub(r'\)','',re.sub(r'Flux \(','',ylab)),'k',18)
                 plt.grid()
                 plt.setp(ax1.get_xticklabels(), visible=False)
 
@@ -719,7 +719,7 @@ if '--shell' in sys.argv:
                         help='Are we running from the shell?')
     parser.add_argument('infile', help='Name of input target pixel FITS file',
                         type=str)
-    parser.add_argument('maskfile', help='Name of mask defintion ASCII file',
+    parser.add_argument('maskfile', help='Name of mask definition ASCII file',
                         type=str)
     parser.add_argument('outfile', help='Name of output FITS file', type=str)
     parser.add_argument('--components', default='1-3',
